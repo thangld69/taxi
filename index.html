@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Taxi Driver Pro | Dịch vụ đưa đón chuyên nghiệp</title>
+    <!-- Font Awesome 6 (miễn phí) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background-color: #fefcf5;
+            color: #1e1e2a;
+            scroll-behavior: smooth;
+        }
+
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Màu chủ đạo: Xanh trắng (sang trọng, hiện đại) */
+        :root {
+            --primary: #0a4b7a;      /* xanh dương đậm */
+            --primary-light: #1e6f9f;
+            --accent: #f5b042;        /* vàng điểm xuyết */
+            --accent-dark: #e09d2c;
+            --white: #ffffff;
+            --gray-bg: #f8fafc;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+            --border-radius: 1.25rem;
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background: rgba(255,255,255,0.96);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .driver-info h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .driver-info h1 span {
+            color: var(--accent);
+        }
+
+        .slogan {
+            font-size: 0.85rem;
+            color: #4b5563;
+            letter-spacing: 0.3px;
+            margin-top: 4px;
+        }
+
+        .call-btn-header {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #1e1e2a;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(245,176,66,0.3);
+        }
+
+        .call-btn-header:hover {
+            transform: scale(1.03);
+            background: linear-gradient(135deg, #f5b042, #d48f1f);
+            box-shadow: 0 8px 20px rgba(245,176,66,0.4);
+        }
+
+        /* Banner */
+        .hero {
+            background: linear-gradient(105deg, #eef4ff 0%, #ffffff 100%);
+            border-radius: 2rem;
+            margin: 32px 0 48px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 2rem 2rem 2rem 2.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(10,75,122,0.1);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 24px 0 0;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.25s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: #1f2937;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.25s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            transition: transform 0.4s;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.01);
+        }
+
+        /* Section style */
+        .section {
+            margin: 70px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            border-left: 6px solid var(--accent);
+            padding-left: 20px;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards giới thiệu */
+        .intro-grid {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .intro-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.8rem;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+        }
+        .intro-card:hover {
+            transform: translateY(-8px);
+            border-bottom-color: var(--accent);
+            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.12);
+        }
+        .intro-icon {
+            font-size: 2.6rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .intro-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: var(--primary);
+        }
+
+        /* dịch vụ Dạng card */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            cursor: default;
+            border: 1px solid #f0f2f5;
+        }
+        .service-card:hover {
+            transform: scale(1.02) translateY(-6px);
+            box-shadow: 0 30px 30px -15px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+        .service-icon {
+            background: rgba(10, 75, 122, 0.08);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            border-radius: 50%;
+            margin: 0 auto 1.2rem;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* QR Code khung */
+        .qr-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .qr-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem 1.8rem 2rem;
+            text-align: center;
+            flex: 1;
+            min-width: 260px;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+        }
+        .qr-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 35px -15px rgba(0,0,0,0.2);
+            border-color: var(--accent);
+        }
+        .qr-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .qr-code-img {
+            background: #fff;
+            padding: 12px;
+            border-radius: 28px;
+            display: inline-block;
+            margin: 15px 0;
+            transition: 0.2s;
+        }
+        .qr-code-img img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+        .qr-tip {
+            margin-top: 12px;
+            font-weight: 500;
+            color: #475569;
+            background: #f1f5f9;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        /* Feedback */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feedback-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: 0.25s;
+            border-top: 4px solid var(--accent);
+        }
+        .feedback-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .feedback-text {
+            font-style: italic;
+            margin: 1rem 0;
+            color: #2d3e50;
+            line-height: 1.4;
+        }
+        .customer-name {
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0b2b3f;
+            color: #e2e8f0;
+            padding: 40px 0 30px;
+            margin-top: 70px;
+            border-radius: 2rem 2rem 0 0;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+        }
+        .footer-info {
+            flex: 2;
+        }
+        .footer-info h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .footer-contact p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .social-links a {
+            color: white;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+            display: inline-block;
+        }
+
+        /* Nút gọi nổi góc màn hình */
+        .float-call {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            border-radius: 60px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 99;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: 0.2s;
+            font-size: 1rem;
+            backdrop-filter: blur(2px);
+            background: linear-gradient(135deg, #25d366, #128C7E);
+        }
+        .float-call i {
+            font-size: 1.4rem;
+        }
+        .float-call:hover {
+            transform: scale(1.05);
+            right: 28px;
+            background: #128C7E;
+        }
+
+        /* Animation khi scroll */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                padding: 1.5rem;
+            }
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .float-call {
+                padding: 10px 16px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.85rem;
+            }
+            .qr-code-img img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-group .btn-primary, .btn-group .btn-outline {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="container header-content">
+        <div class="driver-info">
+            <h1>🚖 <span>Taxi</span> Thắng Cư kuin</h1>
+            <div class="slogan"><i class="fas fa-clock"></i> Phục vụ 24/7 - An toàn - Nhanh chóng</div>
+        </div>
+        <a href="tel:0817630830" class="call-btn-header">
+            <i class="fas fa-phone-alt"></i> Gọi ngay: 0817.630.830
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- Banner lớn -->
+        <div class="hero fade-up">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-star-of-life"></i> Đối tác tin cậy</div>
+                    <div class="hero-title">
+                        Đưa đón <span>Sân bay</span> - Đi tỉnh <br> Hợp đồng dài hạn
+                    </div>
+                    <p style="margin: 16px 0 8px; color: #334155;">Xe sang trọng, tài xế chuyên nghiệp, báo giá minh bạch.</p>
+                    <div class="btn-group">
+                        <a href="tel:0817630830" class="btn-primary"><i class="fas fa-phone-volume"></i> Gọi ngay</a>
+                        <a href="https://zalo.me/0817630830" target="_blank" class="btn-outline"><i class="fab fa-zalo"></i> Nhắn Zalo</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://placehold.co/600x400/0a4b7a/white?text=Taxi+Black+Car&font=montserrat" alt="Taxi chuyên nghiệp">
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần giới thiệu tài xế -->
+        <div class="section fade-up">
+            <h2 class="section-title">Về tài xế Minh Tuấn</h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <div class="intro-icon"><i class="fas fa-award"></i></div>
+                    <h3>15 năm kinh nghiệm</h3>
+                    <p>Am hiểu mọi cung đường, xử lý tình huống linh hoạt, an toàn tuyệt đối.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Đúng giờ tuyệt đối</h3>
+                    <p>Đón tận nơi, trả tận chỗ, luôn đến sớm hơn giờ hẹn 10 phút.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Xe sạch sẽ, máy lạnh</h3>
+                    <p>Nội thất sang trọng, khử mùi, nước uống và wifi miễn phí.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách dịch vụ card -->
+        <div class="section fade-up">
+            <h2 class="section-title">Dịch vụ nổi bật</h2>
+            <div class="services-grid">
+                <div class="service-card"><div class="service-icon"><i class="fas fa-plane-departure"></i></div><h3>Đưa đón sân bay</h3><p></p></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-road"></i></div><h3>Taxi đường dài</h3><p>Đi tỉnh an toàn, giá cạnh tranh, nghỉ ngơi thoải mái.</p></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-file-signature"></i></div><h3>Thuê xe hợp đồng</h3><p>Tuần/tháng, doanh nghiệp, đưa rước nhân viên.</p></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-briefcase"></i></div><h3>Đi công tác</h3><p>Phục vụ giám đốc, đối tác chu đáo, cao cấp.</p></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-umbrella-beach"></i></div><h3>Du lịch gia đình</h3><p>Tour ghép, linh hoạt lịch trình, xe 7-16 chỗ.</p></div>
+            </div>
+        </div>
+
+        <!-- Khung QR code liên hệ Zalo + Facebook -->
+        <div class="section fade-up">
+            <h2 class="section-title">Liên hệ nhanh qua mã QR</h2>
+            <div class="qr-grid">
+                <!-- Zalo QR -->
+                <div class="qr-card">
+                    <h3><i class="fab fa-zalo" style="color:#0068ff;"></i> Zalo Official</h3>
+                    <div class="qr-code-img">
+                        <!-- <img src="img/1.jpg" alt="#"> -->
+                        <img id="zaloQR" src="img/1.jpg" alt="QR Zalo">
+                    </div>
+                    <div class="qr-tip"><i class="fas fa-qrcode"></i> Quét mã để liên hệ nhanh</div>
+                    <p style="margin-top: 12px; font-size:14px;">Tư vấn & đặt xe qua Zalo</p>
+                </div>
+                <!-- Facebook QR -->
+                <div class="qr-card">
+                    <h3><i class="fab fa-facebook-messenger"></i> Facebook</h3>
+                    <div class="qr-code-img">
+                        <img id="facebookQR" src="" alt="QR Facebook">
+                    </div>
+                    <div class="qr-tip"><i class="fas fa-qrcode"></i> Quét mã để liên hệ nhanh</div>
+                    <p style="margin-top: 12px; font-size:14px;">Inbox ngay nhận báo giá</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback khách hàng -->
+        <div class="section fade-up">
+            <h2 class="section-title">Khách hàng nói gì?</h2>
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="feedback-text">“Anh Thắng lái xe cẩn thận, nội thất xe thơm tho, lại còn hỗ trợ lấy hành lý. Chuyến bay 5h sáng anh vẫn đón đúng giờ.”</p>
+                    <div class="customer-name">— Chị Mai Phương, Thôn Nam Hoà</div>
+                </div>
+                <div class="feedback-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="feedback-text">“Đặt xe đi Vũng Tàu, giá hợp lý, tài xế thân thiện, chở gia đình 5 người rất thoải mái. Chắc chắn sẽ ủng hộ dài lâu.”</p>
+                    <div class="customer-name">— Anh Trọng Nghĩa, Bến xe</div>
+                </div>
+                <div class="feedback-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="feedback-text">“Dịch vụ đưa đón sân bay quá chuyên nghiệp, có nước uống, sạc dự phòng. Đặt qua Zalo được báo giá ngay. 10 điểm!”</p>
+                    <div class="customer-name">— Chị Thuỳ Dương, EaNing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-info">
+            <h3>Taxi Thắng cư kuin</h3>
+            <p>Phục vụ 24/7 - Uy tín tạo nên thương hiệu</p>
+            <div class="social-links" style="margin-top: 1rem;">
+                <a href="tel:0817630830"><i class="fas fa-phone-alt"></i></a>
+                <a href="https://zalo.me/0817630830" target="_blank"><i class="fab fa-zalo"></i></a>
+                <a href="https://facebook.com/4096.thang" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+        <div class="footer-contact">
+            <p><i class="fas fa-phone-alt"></i> Hotline: 0817.630.830</p>
+            <p><i class="fab fa-zalo"></i> Zalo: 0817.630.830</p>
+            <p><i class="fab fa-facebook"></i> Facebook: fb.com/4096.thang</p>
+            <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: Ngã 3 Cây Gòn - Cư Kuin</p>
+        </div>
+        <div style="font-size: 0.8rem; opacity:0.7;">© 2026 Taxi Thắng Cư kuin — Đặt xe an toàn</div>
+    </div>
+</footer>
+
+<!-- Nút gọi nổi góc màn hình -->
+<a href="tel:0817630830" class="float-call">
+    <i class="fas fa-phone-alt"></i> <span>Gọi tài xế</span>
+</a>
+
+<script>
+    // Cập nhật QR code từ API với link dễ dàng thay đổi
+    const zaloLink = "https://zalo.me/0817630830";
+    const facebookLink = "https://facebook.com/4096.thang";
+    
+    // Hàm tạo QR bằng api.qrserver.com
+    function generateQR(elementId, data) {
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(data)}`;
+        const imgElement = document.getElementById(elementId);
+        if(imgElement) {
+            imgElement.src = qrUrl;
+            imgElement.alt = `QR code cho ${data}`;
+        }
+    }
+    
+    generateQR("zaloQR", zaloLink);
+    generateQR("facebookQR", facebookLink);
+    
+    // Thay đổi hình ảnh banner minh hoạ bằng ảnh taxi đẹp hơn (có thể thay bằng ảnh thực tế nhưng giữ hiện đại)
+    // Nếu muốn ảnh thật có thể thay link, nhưng hiện tại dùng placeholder có thể cải thiện
+    const bannerImg = document.querySelector('.hero-image img');
+    if(bannerImg) {
+        // Dùng ảnh từ unsplash hoặc placeholder miễn phí? Nhưng để đồng bộ với giao diện sang trọng
+        bannerImg.src = "https://placehold.co/600x400/1e6f9f/white?text=MERCEDES+TAXI+VIP&font=montserrat";
+        bannerImg.alt = "Taxi sang trọng";
+    }
+    
+    // Animation khi cuộn trang (Intersection Observer)
+    const fadeElements = document.querySelectorAll('.fade-up');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    
+    fadeElements.forEach(el => observer.observe(el));
+    
+    // thêm fallback cho các phần tử đã hiển thị nếu load nhanh thì vẫn xuất hiện
+    window.addEventListener('load', () => {
+        fadeElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if(rect.top < window.innerHeight - 100) {
+                el.classList.add('appear');
+            }
+        });
+    });
+    
+    // Cho phép admin có thể dễ dàng thay link từ code, nhưng hiển thị công khai biến toàn cục
+    console.log("QR code dễ dàng chỉnh sửa: thay đổi zaloLink/facebookLink trong script");
+</script>
+<!-- 
+    Giải thích: 
+    - QR code hoạt động hoàn hảo dùng API qrserver.
+    - Giao diện responsive, màu xanh + vàng điểm nhấn.
+    - Nút gọi nổi góc phải.
+    - Hiệu ứng hover card + animation khi scroll.
+    - Có đầy đủ các phần: Header, Banner, Giới thiệu, Dịch vụ, QR kép, Feedback, Footer.
+    - Các link Zalo, Facebook và số điện thoại có thể dễ dàng thay đổi ở đầu JS (hoặc trong HTML).
+-->
+</body>
+</html>
